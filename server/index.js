@@ -3,9 +3,12 @@ const app = express();
 const products = require('./routes/products');
 const MongoClient = require('mongodb').MongoClient;
 const ProductsDAO = require('./database/productsDAO');
-require('dotenv').config();
 
-app.use('/products', products);
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+app.use('/api/products', products);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the webshop API');
