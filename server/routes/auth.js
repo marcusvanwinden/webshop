@@ -1,16 +1,16 @@
 const express = require('express');
+const { index, register, login, logout, user } = require('../controllers/auth');
+
 const router = express.Router();
 
-router.get('/login', async (req, res) => {
-  res.send('Login');
-});
+router.route('/').get(index);
 
-router.get('/register', (req, res) => {
-  res.send('Register');
-});
+router.route('/register').post(register);
 
-router.get('/user', (req, res) => {
-  res.send('User');
-});
+router.route('/login').post(login);
+
+router.route('/logout').get(logout);
+
+router.route('/user').get(user);
 
 module.exports = router;

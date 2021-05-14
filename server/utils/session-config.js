@@ -1,4 +1,4 @@
-const sessionSettings = {
+exports.sessionOptions = {
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -10,13 +10,8 @@ const sessionSettings = {
   },
 };
 
-const sessionStoreSettings = {
+exports.sessionStoreOptions = {
   uri: process.env.DB_URI,
   databaseName: process.env.DB_NAME,
   collection: 'sessions',
-};
-
-module.exports = {
-  sessionSettings,
-  sessionStoreSettings,
 };
