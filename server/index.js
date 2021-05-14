@@ -6,21 +6,21 @@ const express = require('express');
 const authRoutes = require('./routes/auth');
 const initializeDatabase = require('./database');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const { sessionSettings, sessionStoreSettings } = require('./utils/session');
 
 const app = express();
+const store = new MongoDBStore(sessionStoreSettings);
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    name: 'webshop.sid',
-    unset: 'destroy',
-    cookie: {
-      maxAge: 1000 * 60 * 10,
-      // secure: true // In production
+  session(
+    {
+      ...sessionSettings,
+      store: store,
     },
-    // store: ''
-  })
+    (error) => {
+      console.error(error);
+    }
+  )
 );
 
 app.use('/auth', authRoutes);
