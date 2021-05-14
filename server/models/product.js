@@ -15,6 +15,7 @@ class Product {
 
   static async getAllProducts() {
     const result = await products.find().toArray();
+
     return result;
   }
 }

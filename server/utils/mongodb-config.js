@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
-const Product = require('./product');
-const User = require('./user');
+const Product = require('../models/product');
+const User = require('../models/user');
 
 async function initializeDatabase() {
   const client = new MongoClient(process.env.DB_URI, {
