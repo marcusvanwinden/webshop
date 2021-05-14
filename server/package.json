@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "debug:sessions": "DEBUG=express-session npm run dev"
   },
   "keywords": [],
   "author": "Marcus van Winden",
   "license": "ISC",
   "dependencies": {
+    "connect-mongodb-session": "^2.4.1",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
