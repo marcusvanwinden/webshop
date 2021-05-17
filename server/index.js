@@ -11,11 +11,19 @@ const {
   sessionStoreOptions,
 } = require('./utils/session-config');
 const passport = require('passport');
+const cors = require('cors');
 
 const app = express();
 const store = new MongoDBStore(sessionStoreOptions);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
 app.use(
   session(
     {
